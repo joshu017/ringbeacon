@@ -1,0 +1,19 @@
+{
+  "name": "ringbeacon-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "node --test",
+    "build": "wrangler deploy --dry-run --outdir .wrangler/build",
+    "check": "npm test && npm run build",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ringbeacon",
+  "compatibility_date": "2026-09-20",
+  "workers_dev": false,
+  "routes": [{ "pattern": "ringbeacon.net", "custom_domain": true }],
+  "assets": { "directory": "./public" }
+}
