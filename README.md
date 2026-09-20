@@ -79,11 +79,22 @@ binding types. Browser console errors and BLE behavior must be checked in the
 browser; Workers invocation logs and traces do not instrument browser JavaScript.
 
 The Worker uses [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
-and the custom domain `ringbeacon.net`. The configured Worker name, `ringbeacon`,
+and the custom domains [ringbeacon.net](https://ringbeacon.net/) and
+[www.ringbeacon.net](https://www.ringbeacon.net/). Both serve the same page directly,
+without a redirect. Each hostname is explicitly bound with `custom_domain: true`
+in `web/wrangler.jsonc`; a DNS CNAME alone does not bind a Worker custom domain.
+Keep `workers_dev` false and omit `account_id` from the configuration.
+The configured Worker name, `ringbeacon`,
 matches the existing Cloudflare dashboard service. Authenticate to the account
 that owns it. For Cloudflare Git builds, set the root directory to `web`, use
 `npm ci && npm run check` as the build command and `npm run deploy` as the deploy
 command. Keep credentials out of the repository.
+
+If adding `www` fails because of an externally managed DNS record, remove only
+the conflicting `www.ringbeacon.net` record in Cloudflare DNS and deploy again.
+Preserve the working apex custom domain and all unrelated DNS records. Cloudflare
+manages DNS and TLS for both custom domains. After deployment, verify that both
+HTTPS URLs return the expected RingBeacon page with status 200 and no redirect.
 
 For full firmware/Python/browser protocol compatibility checks, run
 `python3 -m unittest discover -s tests -v` from the repository root (requires

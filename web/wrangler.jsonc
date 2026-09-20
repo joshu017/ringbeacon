@@ -3,6 +3,9 @@
   "name": "ringbeacon",
   "compatibility_date": "2026-09-20",
   "workers_dev": false,
-  "routes": [{ "pattern": "ringbeacon.net", "custom_domain": true }],
+  "routes": [
+    { "pattern": "ringbeacon.net", "custom_domain": true },
+    { "pattern": "www.ringbeacon.net", "custom_domain": true }
+  ],
   "assets": { "directory": "./public" }
 }

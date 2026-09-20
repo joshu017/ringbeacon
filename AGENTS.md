@@ -50,5 +50,12 @@ hardware behavior is verified from compilation or host tests alone.
 
 Use an explicit UPLOAD_PORT for USB flashing. Publishing uses npm run deploy from web/;
 check the Cloudflare account and existing Worker name before the first migration.
+Keep both ringbeacon.net and www.ringbeacon.net explicitly configured as custom
+domains on the ringbeacon Worker. Both serve the page directly, without redirects.
+Keep workers_dev false and omit account_id. A www CNAME to the apex does not
+bind www to the Worker. If an existing www DNS record conflicts, ask the user to
+remove only that record; preserve the working apex and unrelated DNS records.
+After deployment, verify both HTTPS hostnames return the expected page with
+status 200 and no redirect.
 Do not commit .venv, build, node_modules, .wrangler, credentials, or local editor
 settings. Preserve the license and existing GitHub history.
